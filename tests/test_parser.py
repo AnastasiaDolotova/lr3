@@ -48,6 +48,7 @@ def test_unbalanced_parentheses():
     with pytest.raises(ValueError):
         parse("(1 + 2")
 
+
 def test_scientific_notation():
     expr = parse("1.25e+2")
     assert isinstance(expr, Number)
@@ -75,3 +76,8 @@ def test_negative_numbers():
 def test_extra_closing_parenthesis():
     with pytest.raises(ValueError):
         parse("2 + 3)")
+
+def test_extra_tokens():
+    with pytest.raises(ValueError):
+        parse("1 + 2 3")
+

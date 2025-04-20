@@ -18,6 +18,10 @@ def tokenize(expression: str):
     pos = 0
     tokens = []
 
+    matches = re.findall(r'\d+ \d+', expression)
+    if matches:
+        raise ValueError("Unexpected expression: there should be no spaces between the numbers.")
+
     expression = expression.replace(" ", "")
     while pos < len(expression):
         match = token_pattern.match(expression, pos)
