@@ -3,6 +3,7 @@ import pytest
 from calculator.parser import Number, BinaryOp, parse
 
 from calculator.evaluator import evaluate
+import math
 
 @pytest.mark.parametrize("expr, result", [
     (BinaryOp(Number(1), '+', Number(2)), 3),
@@ -58,3 +59,18 @@ def test_near_zero_division():
 def test_negative_exponent():
     assert evaluate(parse("4^-2")) == 0.0625
 
+def test_constants():
+    assert abs(evaluate(parse("pi")) - math.pi) < 0.01
+    assert abs(evaluate(parse("e")) - math.e) < 0.01
+
+def test_functions():
+    assert abs(evaluate(parse("sin(pi / 2)")) - 1) < 0.01
+    assert abs(evaluate(parse("cos(0)")) - 1) < 0.01
+    assert abs(evaluate(parse("tg(pi / 4)")) - 1) < 0.01
+    assert abs(evaluate(parse("ctg(pi / 4)")) - 1) < 0.01
+    assert abs(evaluate(parse("ln(e)")) - 1) < 0.01
+    assert abs(evaluate(parse("exp(1)")) - 2.718281828459045) < 0.01
+    assert abs(evaluate(parse("sqrt(4)")) - 2) < 0.01
+    assert abs(evaluate(parse("pi")) - 3.141592653589793) < 0.01
+    assert abs(evaluate(parse("e")) - 2.718281828459045) < 0.01
+    assert abs(evaluate(parse("sqrt(ln(e))")) - 1) < 0.01
