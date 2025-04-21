@@ -1,5 +1,7 @@
 import pytest
+
 from calculator.parser import Number, BinaryOp, parse
+
 from calculator.evaluator import evaluate
 
 @pytest.mark.parametrize("expr, result", [
@@ -55,3 +57,4 @@ def test_near_zero_division():
 
 def test_negative_exponent():
     assert evaluate(parse("4^-2")) == 0.0625
+
