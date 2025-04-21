@@ -1,7 +1,5 @@
 import math
-
 from calculator.parser import BinaryOp, Number
-
 
 def evaluate(expr):
     if isinstance(expr, Number):
@@ -21,6 +19,8 @@ def evaluate(expr):
             if math.isinf(left / right):
                 raise OverflowError("Result is infinite")
             return left / right
+        elif expr.op == '^':
+            return left ** right
         else:
             raise ValueError(f"Unknown operator: {expr.op}")
     else:
