@@ -75,3 +75,7 @@ def test_negative_numbers():
 def test_extra_closing_parenthesis():
     with pytest.raises(ValueError):
         parse("2 + 3)")
+
+def test_extra_tokens():
+    with pytest.raises(ValueError):
+        parse("1 + 2 3")
