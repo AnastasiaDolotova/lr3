@@ -81,3 +81,4 @@ def test_extra_tokens():
     with pytest.raises(ValueError):
         parse("1 + 2 3")
 
+
