@@ -81,4 +81,42 @@ def test_extra_tokens():
     with pytest.raises(ValueError):
         parse("1 + 2 3")
 
+def test_sin():
+    expr = parse("-3 + sin(0)")
+    assert expr is not None
 
+def test_sqrt():
+    expr = parse("sqrt(4)")
+    assert expr is not None
+
+def test_cos():
+    expr = parse("cos(0)")
+    assert expr is not None
+
+def test_tg():
+    expr = parse("tg(0)")
+    assert expr is not None
+
+def test_ctg():
+    expr = parse("ctg(1)")
+    assert expr is not None
+
+def test_ln():
+    expr = parse("ln(e)")
+    assert expr is not None
+
+def test_exp():
+    expr = parse("exp(1)")
+    assert expr is not None
+
+def test_pi_constant():
+    expr = parse("pi")
+    assert expr is not None
+
+def test_e_constant():
+    expr = parse("e")
+    assert expr is not None
+
+def test_combined_expression():
+    expr = parse("sqrt(ln(e))")
+    assert expr is not None
